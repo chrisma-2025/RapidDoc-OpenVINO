@@ -49,7 +49,8 @@ class RapidOcrModel(object):
         engine_type = ocr_config.get('engine_type') if ocr_config else None
 
         # CPU 上优先使用 OpenVINO（如果可用且用户未指定 engine_type）
-        if device.startswith('cpu') and self.check_openvino() and not engine_type:
+        # if device.startswith('cpu') and self.check_openvino() and not engine_type:
+        if (self.check_openvino() and not engine_type) or engine_type is EngineType.OPENVINO:   # 在engine_type为空时使用OpenVINO作为默认纯推理引擎 Chris
             default_params["Det.engine_type"] = EngineType.OPENVINO
             default_params["Rec.engine_type"] = EngineType.OPENVINO
             default_params["Cls.engine_type"] = EngineType.OPENVINO
@@ -77,7 +78,8 @@ class RapidOcrModel(object):
                 default_params['EngineConfig.paddle.gpu_id'] = gpu_id
         default_params.pop('engine_type', None)
         default_params.pop('use_det_mode', None)
-        self.ocr_engine = RapidOCR(params=default_params)
+        # self.ocr_engine = RapidOCR(params=default_params)
+        self.ocr_engine = RapidOCR(config_path="models/config.yaml", params=default_params)   # 当OCR时使用配置文件加载模型和参数 Chris
         self.text_detector = self.ocr_engine.text_det
         self.text_recognizer = self.ocr_engine.text_rec
         self.rec_batch_num = self.text_recognizer.rec_batch_num
