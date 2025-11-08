@@ -99,11 +99,11 @@ python demo.py
 ```
 
 #### 目前OpenVINO支持的模型和设备
-Layout - ORT (OV EP CPU/GPU/NPU)
-Formula - ORT CPU
-OCR_det - ORT (OV EP CPU/GPU), OV (CPU/GPU)
-OCR_rec - ORT (OV EP CPU/GPU), OV (CPU/GPU)
-Table - ORT CPU
+- Layout - ORT (OV EP CPU/GPU/NPU)
+- Formula - ORT CPU
+- OCR_det - ORT (OV EP CPU/GPU), OV (CPU/GPU)
+- OCR_rec - ORT (OV EP CPU/GPU), OV (CPU/GPU)
+- Table - ORT CPU
 
 
 #### 使用docker部署RapidDoc
