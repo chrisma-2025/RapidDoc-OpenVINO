@@ -36,7 +36,9 @@ class OrtInferSession(InferSession):
         self.session = InferenceSession(
             model_path,
             sess_options=sess_opt,
-            providers=provider_cfg.get_ep_list(),
+            # providers=provider_cfg.get_ep_list(),
+            providers=["OpenVINOExecutionProvider"],   # 强制使用OpenVINO EP作为ORT推理引擎 Chris
+            provider_options=[{"device_type":"GPU", "cache_dir":"cache", "enable_opencl_throttling":True}]   # 使用GPU作为Layout模型推理设备，此处若改为NPU (Intel AI PC) 可以有比GPU更快推理速度但有一定精度损失，因建议使用GPU或CPU Chris
         )
         provider_cfg.verify_providers(self.session.get_providers())
 
