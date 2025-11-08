@@ -72,18 +72,39 @@ pip install -e .[cpu] -i https://mirrors.aliyun.com/pypi/simple
 或
 pip install -e .[gpu] -i https://mirrors.aliyun.com/pypi/simple
 ```
-#### 使用gpu推理
-```python
-# rapid-doc[gpu] 默认安装 onnxruntime-gpu 最新版
-# 需要确定onnxruntime-gpu与GPU对应，参考 https://onnxruntime.ai/docs/execution-providers/CUDA-ExecutionProvider.html#requirements
 
-# 在 Python 中指定 GPU（必须在导入 rapid_doc 之前设置）
-import os
-# 使用默认 GPU（cuda:0）
-os.environ['MINERU_DEVICE_MODE'] = "cuda"
-# 或指定 GPU 编号，例如使用第二块 GPU（cuda:1）
-os.environ['MINERU_DEVICE_MODE'] = "cuda:1"
+#### 安装OpenVINO
+```bash
+# 安装OpenVINO
+pip install -U openvino onnxruntime-openvino onnxruntime
 ```
+
+#### 转换OCR模型成OpenVINO支持的IR文件
+```bash
+# 下载OCR模型
+cd RapidDoc-OpenVINO
+mkdir models && cd models
+wget https://www.modelscope.cn/models/RapidAI/RapidOCR/resolve/master/onnx/PP-OCRv5/det/ch_PP-OCRv5_server_det.onnx -P ocr
+wget https://www.modelscope.cn/models/RapidAI/RapidOCR/resolve/master/onnx/PP-OCRv5/rec/ch_PP-OCRv5_rec_server_infer.onnx -P ocr
+wget https://www.modelscope.cn/models/RapidAI/RapidOCR/resolve/master/onnx/PP-OCRv4/cls/ch_ppocr_mobile_v2.0_cls_infer.onnx -P ocr
+
+# 转换模型
+python ir_converter.py
+```
+
+#### 使用OpenVINO推理
+```bash
+cd ..
+python demo.py
+```
+
+#### 目前OpenVINO支持的模型和设备
+Layout - ORT (OV EP CPU/GPU/NPU)
+Formula - ORT CPU
+OCR_det - ORT (OV EP CPU/GPU), OV (CPU/GPU)
+OCR_rec - ORT (OV EP CPU/GPU), OV (CPU/GPU)
+Table - ORT CPU
+
 
 #### 使用docker部署RapidDoc
 RapidDoc提供了便捷的docker部署方式，这有助于快速搭建环境并解决一些棘手的环境兼容问题。
