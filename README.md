@@ -52,31 +52,18 @@
   - 除了 OCR 和 PP-DocLayout-M/S 模型，OpenVINO推理会报错，暂时难以解决。[PaddleOCR/issues/16277](https://github.com/PaddlePaddle/PaddleOCR/issues/16277)
 ---
 
-## 🛠️ 安装RapidDoc
+## 🛠️ 准备环境
 
-#### 使用pip安装
+#### 安装Python依赖包
 ```bash
-pip install rapid-doc[cpu] -i https://mirrors.aliyun.com/pypi/simple
-或
-pip install rapid-doc[gpu] -i https://mirrors.aliyun.com/pypi/simple
+pip install torch torchvision --index-url https://download.pytorch.org/whl/cpu
+pip install loguru pypdfium2 requests boto3 pydantic pypdf reportlab magika opencv-python tqdm omegaconf colorlog tokenizers rapidocr fast_langdetect scikit-image bs4 pdfminer pdfminer.six pdftext matplotlib
+pip install openvino onnxruntime-openvino onnxruntime
 ```
 
-#### 通过源码安装
+#### 克隆到本地仓库
 ```bash
-# 克隆仓库
-git clone https://github.com/RapidAI/RapidDoc.git
-cd RapidDoc
-
-# 安装依赖
-pip install -e .[cpu] -i https://mirrors.aliyun.com/pypi/simple
-或
-pip install -e .[gpu] -i https://mirrors.aliyun.com/pypi/simple
-```
-
-#### 安装OpenVINO
-```bash
-# 安装OpenVINO
-pip install -U openvino onnxruntime-openvino onnxruntime
+git clone https://github.com/chrisma-2025/RapidDoc-OpenVINO
 ```
 
 #### 转换OCR模型成OpenVINO支持的IR文件
@@ -91,7 +78,7 @@ wget https://www.modelscope.cn/models/RapidAI/RapidOCR/resolve/master/onnx/PP-OC
 python ir_converter.py
 ```
 
-#### 使用OpenVINO推理
+#### 使用OpenVINO推理（默认使用GPU）
 ```bash
 cd ..
 python demo.py
@@ -103,12 +90,6 @@ python demo.py
 - OCR_det - ORT (OV EP CPU/GPU), OV (CPU/GPU)
 - OCR_rec - ORT (OV EP CPU/GPU), OV (CPU/GPU)
 - Table - ORT CPU
-
-
-#### 使用docker部署RapidDoc
-RapidDoc提供了便捷的docker部署方式，这有助于快速搭建环境并解决一些棘手的环境兼容问题。
-
-您可以在文档中获取[Docker部署说明](docker/README.md)。
 
 ---
 
