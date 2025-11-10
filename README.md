@@ -82,8 +82,7 @@ pip install -U openvino onnxruntime-openvino onnxruntime
 #### 转换OCR模型成OpenVINO支持的IR文件
 ```bash
 # 下载OCR模型
-cd RapidDoc-OpenVINO
-mkdir models && cd models
+cd RapidDoc-OpenVINO/models
 wget https://www.modelscope.cn/models/RapidAI/RapidOCR/resolve/master/onnx/PP-OCRv5/det/ch_PP-OCRv5_server_det.onnx -P ocr
 wget https://www.modelscope.cn/models/RapidAI/RapidOCR/resolve/master/onnx/PP-OCRv5/rec/ch_PP-OCRv5_rec_server_infer.onnx -P ocr
 wget https://www.modelscope.cn/models/RapidAI/RapidOCR/resolve/master/onnx/PP-OCRv4/cls/ch_ppocr_mobile_v2.0_cls_infer.onnx -P ocr
