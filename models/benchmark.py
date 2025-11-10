@@ -48,7 +48,7 @@ for d in devices:
 import openvino as ov
 from openvino import Core
 
-ir = "./ch_PP-OCRv5_server_det.xml"
+ir = "ocr/ch_PP-OCRv5_server_det.xml"
 core = Core()
 
 def _ov_infer(compile_model, input_data, device):
