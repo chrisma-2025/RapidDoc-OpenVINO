@@ -58,7 +58,8 @@
 ```bash
 pip install torch torchvision --index-url https://download.pytorch.org/whl/cpu
 pip install loguru pypdfium2 requests boto3 pydantic pypdf reportlab magika opencv-python tqdm omegaconf colorlog tokenizers rapidocr fast_langdetect scikit-image bs4 pdfminer pdfminer.six pdftext matplotlib
-pip install openvino onnxruntime-openvino onnxruntime
+pip install onnxruntime-openvino onnxruntime
+pip install --pre openvino --extra-index-url https://storage.openvinotoolkit.org/simple/wheels/nightly
 ```
 
 #### 克隆到本地仓库
