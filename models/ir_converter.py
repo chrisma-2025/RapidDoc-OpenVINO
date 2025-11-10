@@ -32,7 +32,7 @@ ov_models = [ocr_svr_det_ov,ocr_svr_rec_ov,ocr_mob_cls_ov]
 # 将 ONNX 模型转换成 IR 格式
 for model in onnx_models:
     ov_model = ov.convert_model(model)
-    xml_path = model.split('.')[0]+".xml"
+    xml_path = model.split('.onnx')[0]+".xml"
     ov.save_model(ov_model, xml_path)
 
 # 编译 OV 模型
