@@ -79,7 +79,7 @@ class RapidOcrModel(object):
         default_params.pop('engine_type', None)
         default_params.pop('use_det_mode', None)
         # self.ocr_engine = RapidOCR(params=default_params)
-        self.ocr_engine = RapidOCR(config_path="models/config.yaml", params=default_params)   # 当OCR时使用配置文件加载模型和参数 Chris
+        self.ocr_engine = RapidOCR(config_path="models/config.yaml", params=default_params)   # 当OCR使用GPU设备推理时使用的配置文件 Chris
         self.text_detector = self.ocr_engine.text_det
         self.text_recognizer = self.ocr_engine.text_rec
         self.rec_batch_num = self.text_recognizer.rec_batch_num
