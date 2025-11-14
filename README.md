@@ -1,4 +1,11 @@
-# 感谢RapidDoc (https://github.com/RapidAI/RapidDoc) 原作者
+## 👏 感谢RapidDoc (https://github.com/RapidAI/RapidDoc) 原作者
+
+#### 🛠️ 安装英特尔GPU驱动，适用于各类集显和独显加速设备。
+https://dgpu-docs.intel.com/driver/client/overview.html
+#### 🛠️ 安装英特尔NPU驱动，适用于各类Core Ultra系列芯片。
+https://github.com/intel/linux-npu-driver
+
+---
 
 # RapidDoc – 高速文档解析系统
 
