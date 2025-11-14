@@ -1,3 +1,5 @@
+# 感谢RapidDoc (https://github.com/RapidAI/RapidDoc) 原作者
+
 # RapidDoc – 高速文档解析系统
 
 ## 😺 项目介绍
@@ -77,13 +79,31 @@ wget https://www.modelscope.cn/models/RapidAI/RapidOCR/resolve/master/onnx/PP-OC
 
 # 转换模型
 python ir_converter.py
+
+# 确认models/ocr/文件夹下有以下文件
+- ch_ppocr_mobile_v2.0_cls_infer.bin
+- ch_ppocr_mobile_v2.0_cls_infer.onnx
+- ch_ppocr_mobile_v2.0_cls_infer.xml
+- ch_PP-OCRv5_rec_server_infer.bin
+- ch_PP-OCRv5_rec_server_infer.onnx
+- ch_PP-OCRv5_rec_server_infer.xml
+- ch_PP-OCRv5_server_det.bin
+- ch_PP-OCRv5_server_det.onnx
+- ch_PP-OCRv5_server_det.xml
 ```
+
+#### 参照修改openvino.py
+https://github.com/chrisma-2025/RapidOCR-OpenVINO/blob/main/python/rapidocr/inference_engine/openvino.py   L46~59
+* 已尝试编译安装修改后的RapidOCR，但执行时无法找到rapidocr包
+
 
 #### 使用OpenVINO推理（默认使用GPU）
 ```bash
 cd ..
 python demo.py
 ```
+* 通过注释和取消GPU配置文件来确定是否使用GPU，L82 为加载使用GPU，L81 为不加载则使用CPU
+- https://github.com/chrisma-2025/RapidDoc-OpenVINO/blob/main/rapid_doc/model/ocr/rapid_ocr.py   L81,82
 
 #### 目前OpenVINO支持的模型和设备
 - Layout - ORT (OV EP CPU/GPU/NPU)
