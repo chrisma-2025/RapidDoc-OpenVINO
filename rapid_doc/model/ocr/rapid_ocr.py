@@ -78,7 +78,7 @@ class RapidOcrModel(object):
                 default_params['EngineConfig.paddle.gpu_id'] = gpu_id
         default_params.pop('engine_type', None)
         default_params.pop('use_det_mode', None)
-        # self.ocr_engine = RapidOCR(params=default_params)
+        # self.ocr_engine = RapidOCR(params=default_params)   # 默认使用ORT OV EP CPU进行推理
         self.ocr_engine = RapidOCR(config_path="models/config.yaml", params=default_params)   # 当OCR使用GPU设备推理时使用的配置文件 Chris
         self.text_detector = self.ocr_engine.text_det
         self.text_recognizer = self.ocr_engine.text_rec
